@@ -50,6 +50,8 @@ export default [
       'import': eslintPluginImport,
     },
     rules: {
+      'prefer-arrow-callback': ['error'],
+      'func-style': ['error', 'expression', { allowArrowFunctions: true }],
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
