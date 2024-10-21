@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
+import AppLayout from './components/AppLayout'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AuthProvider from './state/AuthProvider/AuthProvider'
 import Homepage from './views/Homepage'
+import Login from './views/Login'
 
 const App = () => {
   return (
@@ -11,10 +13,12 @@ const App = () => {
         <Routes>
           {/* Public Routes*/}
           {/* <Route path="/login" element={<LoginForm />} /> */}
-          <Route path="/login" element={<Homepage />} /> {/** Render homepage for now */}
+          <Route path="/login" element={<Login />} /> {/** Render homepage for now */}
           {/* Protected Routes */}
           <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={<AppLayout />}>
+              <Route path="/" element={<Homepage />} />
+            </Route>
           </Route>
         </Routes>
       </AuthProvider>
