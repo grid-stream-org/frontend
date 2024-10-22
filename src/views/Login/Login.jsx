@@ -68,7 +68,21 @@ const Login = () => {
 
       const token = await userCredential.user.getIdToken(); 
 
-      await login(token)
+      const uuid = userCredential.user.uid;
+      const metadata = userCredential.user.metadata; // Contains creation time, last sign-in time, etc.
+      const providerData = userCredential.user.providerData; // Information about the auth provider
+
+      // Store the token, uuid, and metadata in localStorage
+      const userData = {
+        token,         // JWT token
+        uuid,          // Unique User ID (UUID)
+        metadata,      // User's metadata
+        providerData,  // Provider details
+      };
+
+      // localStorage.setItem('user', JSON.stringify(userData));
+
+      await login(userData)
 
       if (userCredential.user) {
         navigate('/'); 
@@ -135,7 +149,9 @@ const Login = () => {
             <Button type="submit" style={{ height: '50px' }} isLoading={isLoading}>
               Login
             </Button>
-            <div className="separator">OR</div>
+            <div style={{textAlign: 'center', fontSize: '1.2rem', color: '#555', }}>
+              OR
+            </div>
         
             <Button type="submit" style={{ height: '50px' }} onClick={handleGoogleLogin}>
               Login with Google

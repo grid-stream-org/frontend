@@ -5,7 +5,6 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AuthProvider from './state/AuthProvider/AuthProvider'
 import Homepage from './views/Homepage'
 import Login from './views/Login'
-import LoginForm from './components/LoginForm/LoginForm'; 
 
 const App = () => {
   return (
