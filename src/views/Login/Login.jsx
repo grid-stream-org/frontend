@@ -2,9 +2,17 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import { TextField, InputAdornment } from '@mui/material';
+
+
 import Button from '../../components/Button'
 import Card from '../../components/Card'
 import { useAuth } from '../../state/AuthProvider/AuthProvider'
+
+import { auth } from '../../config/firebaseConfig';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   // State hooks for login email, password, loading, and error message
@@ -26,6 +34,22 @@ const Login = () => {
     setLoginPassword(event.target.value)
   }
 
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      const user = auth.currentUser;
+
+      if (user) {
+        navigate('/'); 
+      } else {
+        throw new Error('User not authenticated')
+      }
+    } catch (error) {
+      setError('Failed to log in with Google. Please try again.');
+    }
+  };
+
   useEffect(() => {
     if (location.state?.invalidToken) {
       setErrorMessage(
@@ -40,19 +64,27 @@ const Login = () => {
     setIsLoading(true) // Set loading state to true
 
     try {
-      // TODO replace with api call, response should contain jwt token
-      // const response = await axios.post('url', {
-      //   email: loginEmail,
-      //   password: loginPassword,
-      // })
-      // await login(response.data)
-      await login('temptoken')
-      navigate('/')
+      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+
+      const token = await userCredential.user.getIdToken(); 
+
+      await login(token)
+
+      if (userCredential.user) {
+        navigate('/'); 
+      }
     } catch (error) {
       console.error(error)
       setErrorMessage('Incorrect email or password')
+      
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        setErrorMessage('Incorrect email or password');
+      } else {
+        setErrorMessage('Login failed. Please try again.');
+      }
+
     } finally {
-      setIsLoading(false) // Set loading state back to false
+      setIsLoading(false) 
     }
   }
 
@@ -64,7 +96,7 @@ const Login = () => {
           <h2 className="text-2xl">Welcome</h2>
           <p>Sign in to continue to GridStream</p>
           <form className="flex flex-col gap-6 w-full" onSubmit={onSubmitLogin}>
-            <input
+            <TextField
               className="p-3 rounded-md border border-primary"
               type="email"
               id="email"
@@ -73,8 +105,15 @@ const Login = () => {
               value={loginEmail}
               onChange={onEmailChange}
               disabled={isLoading} // Disable input when loading
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <input
+            <TextField
               className="p-3 rounded-md border border-primary"
               type="password"
               id="password"
@@ -83,10 +122,23 @@ const Login = () => {
               value={loginPassword}
               onChange={onPasswordChange}
               disabled={isLoading} // Disable input when loading
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+              
             />
             {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
             <Button type="submit" style={{ height: '50px' }} isLoading={isLoading}>
               Login
+            </Button>
+            <div className="separator">OR</div>
+        
+            <Button type="submit" style={{ height: '50px' }} onClick={handleGoogleLogin}>
+              Login with Google
             </Button>
           </form>
         </div>
