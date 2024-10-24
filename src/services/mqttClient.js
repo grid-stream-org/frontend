@@ -28,8 +28,7 @@ export const connectClient = (topic, onMessageCallback) => {
     });
   });
 
-  // May need to adjust for messaging
-  ////////////////////////////////////
+  // when message recieved from broker
   client.on('message', (receivedTopic, message) => {
     if (receivedTopic === topic) {
       const data = JSON.parse(message.toString());
