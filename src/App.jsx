@@ -5,6 +5,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AuthProvider from './state/AuthProvider/AuthProvider'
 import Homepage from './views/Homepage'
 import Login from './views/Login'
+import Dashboard from './views/Dashboard'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<AppLayout />}>
               <Route path="/" element={<Homepage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Route>
           </Route>
         </Routes>
