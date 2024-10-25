@@ -69,7 +69,7 @@
 
 ## ⛑️ Contributing
 
-For guidlines and instructions on contributing, please refer to [CONTRIBUTING.md](https://github.com/swe4103/swe4103-project/blob/main/CONTRIBUTING.md)
+For guidlines and instructions on contributing, please refer to [CONTRIBUTING.md](https://github.com/grid-stream-org/frontend/blob/main/CONTRIBUTING.md)
 
 ## 🚀 Local Run
 
