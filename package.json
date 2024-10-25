@@ -8,13 +8,17 @@
     "build": "vite build",
     "lint": "eslint . --fix",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\"",
+    "postinstall": "husky"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+    "*.{js,jsx}": [
+      "yarn lint",
+      "yarn format"
     ],
-    "*.js": "eslint --cache --fix"
+    "*.{json,md}": [
+      "yarn format"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
