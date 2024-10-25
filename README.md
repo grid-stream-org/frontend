@@ -59,7 +59,6 @@
   - Prettier config
 - `CONTRIBUTING.md`
   - Document outlining contribution guidelines
-    containers
 - `package.json`
   - Specific to Node.js and JavaScript projects, used to manage dependencies, scripts, and project metadata
 - `README.md`
