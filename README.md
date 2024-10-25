@@ -5,7 +5,7 @@
 
 ## 🧭 Table of Contents
 
-- [SWE4103 Project](#swe4103-project)
+- [Frontend](#frontend)
   - [Table of Contents](#-table-of-contents)
   - [Team](#-team)
   - [Directory Structure](#-directory-structure)
@@ -59,7 +59,6 @@
   - Prettier config
 - `CONTRIBUTING.md`
   - Document outlining contribution guidelines
-    containers
 - `package.json`
   - Specific to Node.js and JavaScript projects, used to manage dependencies, scripts, and project metadata
 - `README.md`
@@ -69,7 +68,7 @@
 
 ## ⛑️ Contributing
 
-For guidlines and instructions on contributing, please refer to [CONTRIBUTING.md](https://github.com/swe4103/swe4103-project/blob/main/CONTRIBUTING.md)
+For guidlines and instructions on contributing, please refer to [CONTRIBUTING.md](https://github.com/grid-stream-org/frontend/blob/main/CONTRIBUTING.md)
 
 ## 🚀 Local Run
 
