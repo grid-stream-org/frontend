@@ -5,7 +5,7 @@
 
 ## 🧭 Table of Contents
 
-- [SWE4103 Project](#swe4103-project)
+- [Frontend](#-frontend)
   - [Table of Contents](#-table-of-contents)
   - [Team](#-team)
   - [Directory Structure](#-directory-structure)
