@@ -5,7 +5,7 @@
 
 ## 🧭 Table of Contents
 
-- [Frontend](#-frontend)
+- [Frontend](#frontend)
   - [Table of Contents](#-table-of-contents)
   - [Team](#-team)
   - [Directory Structure](#-directory-structure)
