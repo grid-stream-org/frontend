@@ -1,9 +1,9 @@
-// Routes for Sidebar componentimport 
+// Routes for Sidebar componentimport
 
 export const routes = {
   classes: { path: '/', icon: 'table-columns', label: 'Classes' },
   settings: { path: '/settings', icon: 'gear', label: 'Settings' },
-  dashboard: { path: '/dashboard', icon: 'table-columns', label: 'Dashboard' }
+  dashboard: { path: '/dashboard', icon: 'chart-simple', label: 'Dashboard' },
 }
 
 export const getTitle = pathname => {

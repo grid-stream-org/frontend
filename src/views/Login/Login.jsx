@@ -1,18 +1,15 @@
 // import axios from 'axios'
+import EmailIcon from '@mui/icons-material/Email'
+import LockIcon from '@mui/icons-material/Lock'
+import { TextField, InputAdornment } from '@mui/material'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import { TextField, InputAdornment } from '@mui/material';
-
-
 import Button from '../../components/Button'
 import Card from '../../components/Card'
+import { auth } from '../../config/firebaseConfig'
 import { useAuth } from '../../state/AuthProvider/AuthProvider'
-
-import { auth } from '../../config/firebaseConfig';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   // State hooks for login email, password, loading, and error message
@@ -34,21 +31,21 @@ const Login = () => {
     setLoginPassword(event.target.value)
   }
 
-  const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      const user = auth.currentUser;
+  // const handleGoogleLogin = async () => {
+  //   const provider = new GoogleAuthProvider()
+  //   try {
+  //     await signInWithPopup(auth, provider)
+  //     const user = auth.currentUser
 
-      if (user) {
-        navigate('/'); 
-      } else {
-        throw new Error('User not authenticated')
-      }
-    } catch (error) {
-      setError('Failed to log in with Google. Please try again.');
-    }
-  };
+  //     if (user) {
+  //       navigate('/')
+  //     } else {
+  //       throw new Error('User not authenticated')
+  //     }
+  //   } catch (error) {
+  //     setError('Failed to log in with Google. Please try again.')
+  //   }
+  // }
 
   useEffect(() => {
     if (location.state?.invalidToken) {
@@ -64,41 +61,40 @@ const Login = () => {
     setIsLoading(true) // Set loading state to true
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
 
-      const token = await userCredential.user.getIdToken(); 
+      const token = await userCredential.user.getIdToken()
 
-      const uuid = userCredential.user.uid;
-      const metadata = userCredential.user.metadata; // Contains creation time, last sign-in time, etc.
-      const providerData = userCredential.user.providerData; // Information about the auth provider
+      const uuid = userCredential.user.uid
+      const metadata = userCredential.user.metadata // Contains creation time, last sign-in time, etc.
+      const providerData = userCredential.user.providerData // Information about the auth provider
 
       // Store the token, uuid, and metadata in localStorage
       const userData = {
-        token,         // JWT token
-        uuid,          // Unique User ID (UUID)
-        metadata,      // User's metadata
-        providerData,  // Provider details
-      };
+        token, // JWT token
+        uuid, // Unique User ID (UUID)
+        metadata, // User's metadata
+        providerData, // Provider details
+      }
 
       // localStorage.setItem('user', JSON.stringify(userData));
 
       await login(userData)
 
       if (userCredential.user) {
-        navigate('/'); 
+        navigate('/')
       }
     } catch (error) {
       console.error(error)
       setErrorMessage('Incorrect email or password')
-      
-      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-        setErrorMessage('Incorrect email or password');
-      } else {
-        setErrorMessage('Login failed. Please try again.');
-      }
 
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        setErrorMessage('Incorrect email or password')
+      } else {
+        setErrorMessage('Login failed. Please try again.')
+      }
     } finally {
-      setIsLoading(false) 
+      setIsLoading(false)
     }
   }
 
@@ -143,7 +139,6 @@ const Login = () => {
                   </InputAdornment>
                 ),
               }}
-              
             />
             {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
             <Button type="submit" style={{ height: '50px' }} isLoading={isLoading}>
