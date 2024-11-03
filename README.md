@@ -1,6 +1,6 @@
 # <p align="center">Frontend</p>
 
-<p align="center"><img src="public/images/logo-white.svg" width="350px"/></p>
+<p align="center"><img src="public/images/logo-purple.svg" width="350px"/></p>
 <p align="center">This is the client side application of GridStream. It is a React.js application using Tailwind CSS.</p>
 
 ## 🧭 Table of Contents
