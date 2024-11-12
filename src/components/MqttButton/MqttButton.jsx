@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Button } from '@components/Button'
+
 import { connectClient, disconnectClient } from '../../services/mqttClient'
-import Button from '../Button/Button'
 
 const MqttButton = ({ topic, onMessageCallback }) => {
   const [isConnected, setIsConnected] = useState(false)

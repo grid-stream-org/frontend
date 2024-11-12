@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import AppLayout from './components/AppLayout'
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
-import AuthProvider from './state/AuthProvider/AuthProvider'
-import Dashboard from './views/Dashboard'
-import Homepage from './views/Homepage'
-import Login from './views/Login'
+import { AppLayout } from '@components/AppLayout'
+import { ProtectedRoutes } from '@components/ProtectedRoutes'
+import { AuthProvider } from '@state/AuthProvider/AuthProvider'
+import { Dashboard } from '@views/Dashboard'
+import { Homepage } from '@views/Homepage'
+import { Login } from '@views/Login'
 
 const App = () => {
   return (

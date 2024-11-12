@@ -1,4 +1,4 @@
-import MqttButton from '../../components/MqttButton/MqttButton'
+import { MqttButton } from '@components/MqttButton'
 
 // NOt sure
 const Dashboard = () => {

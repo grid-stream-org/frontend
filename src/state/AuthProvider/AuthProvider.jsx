@@ -1,8 +1,8 @@
+import { auth } from '@config/firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { createContext, useContext, useState, useEffect } from 'react'
 
-import { auth } from '../../config/firebaseConfig'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import useLocalStorage from '@hooks/useLocalStorage'
 
 const AuthContext = createContext()
 

@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import axios from 'axios'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
-import { useAuth } from '../../state/AuthProvider/AuthProvider'
-import { getTitle } from '../AppLayout/routes'
-import Dropdown from '../Dropdown'
+import { getTitle } from '@components/AppLayout/routes'
+import { Dropdown } from '@components/Dropdown'
+import { useAuth } from '@state/AuthProvider/AuthProvider'
 
 const Header = () => {
   const { logout } = useAuth()

@@ -4,9 +4,9 @@ import { TextField, InputAdornment } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-import Button from '../../components/Button'
-import Card from '../../components/Card'
-import { useAuth } from '../../state/AuthProvider/AuthProvider'
+import { Button } from '@components/Button'
+import { Card } from '@components/Card'
+import { useAuth } from '@state/AuthProvider/AuthProvider'
 
 const Login = () => {
   // State hooks for login email, password, loading, and error message
