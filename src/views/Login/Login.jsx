@@ -31,22 +31,6 @@ const Login = () => {
     setLoginPassword(event.target.value)
   }
 
-  // const handleGoogleLogin = async () => {
-  //   const provider = new GoogleAuthProvider()
-  //   try {
-  //     await signInWithPopup(auth, provider)
-  //     const user = auth.currentUser
-
-  //     if (user) {
-  //       navigate('/')
-  //     } else {
-  //       throw new Error('User not authenticated')
-  //     }
-  //   } catch (error) {
-  //     setError('Failed to log in with Google. Please try again.')
-  //   }
-  // }
-
   useEffect(() => {
     if (location.state?.invalidToken) {
       setErrorMessage(
@@ -144,13 +128,6 @@ const Login = () => {
             <Button type="submit" style={{ height: '50px' }} isLoading={isLoading}>
               Login
             </Button>
-            {/* <div style={{textAlign: 'center', fontSize: '1.2rem', color: '#555', }}>
-              OR
-            </div>
-        
-            <Button type="submit" style={{ height: '50px' }} onClick={handleGoogleLogin}>
-              Login with Google
-            </Button> */}
           </form>
         </div>
       </Card>
