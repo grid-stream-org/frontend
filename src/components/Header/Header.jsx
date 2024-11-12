@@ -12,12 +12,6 @@ const Header = () => {
   const location = useLocation()
 
   const handleLogout = async () => {
-    // await axios.post('url', null, {
-    //   headers: {
-    //     Authorization: `Bearer ${user.token}`,
-    //   },
-    // })
-
     logout()
     navigate('/login')
   }
