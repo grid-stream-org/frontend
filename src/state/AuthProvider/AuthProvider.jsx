@@ -1,6 +1,8 @@
+import { auth } from '@config/firebaseConfig'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { createContext, useContext, useState, useEffect } from 'react'
 
-import useLocalStorage from '../../hooks/useLocalStorage'
+import useLocalStorage from '@hooks/useLocalStorage'
 
 const AuthContext = createContext()
 
@@ -12,8 +14,23 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false) // Stop loading after checking localStorage
   }, [])
 
-  const login = async user => {
-    setUser(user)
+  const login = async (loginEmail, loginPassword) => {
+    const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+
+    const token = await userCredential.user.getIdToken()
+
+    const uuid = userCredential.user.uid
+    const metadata = userCredential.user.metadata // Contains creation time, last sign-in time, etc.
+    const providerData = userCredential.user.providerData // Information about the auth provider
+
+    // Store the token, uuid, and metadata in localStorage
+    const userData = {
+      token, // JWT token
+      uuid, // Unique User ID (UUID)
+      metadata, // User's metadata
+      providerData, // Provider details
+    }
+    setUser(userData)
   }
 
   const logout = async () => {

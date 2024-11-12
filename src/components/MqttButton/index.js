@@ -1,1 +1,1 @@
-export { default } from './MqttButton'
+export { default as MqttButton } from './MqttButton'

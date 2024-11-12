@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
-import { connectClient, disconnectClient } from '../../services/mqttClient';
-import Button from '../Button/Button'
+import { useState } from 'react'
+
+import { Button } from '@components/Button'
+
+import { connectClient, disconnectClient } from '../../services/mqttClient'
 
 const MqttButton = ({ topic, onMessageCallback }) => {
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(false)
 
-    // toggle button functionality 
+  // toggle button functionality
   const handleButtonClick = () => {
     if (isConnected) {
-      disconnectClient();
-      setIsConnected(false);
+      disconnectClient()
+      setIsConnected(false)
     } else {
-      connectClient(topic, onMessageCallback);
-      setIsConnected(true);
+      connectClient(topic, onMessageCallback)
+      setIsConnected(true)
     }
-  };
+  }
 
   return (
     <Button onClick={handleButtonClick}>
       {isConnected ? 'Disconnect' : 'View Live Energy Load'}
     </Button>
-  );
-};
+  )
+}
 
-export default MqttButton;
+export default MqttButton

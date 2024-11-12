@@ -1,28 +1,22 @@
-import MqttButton from '../../components/MqttButton/MqttButton';
-import React, { useState } from 'react';
-
+import { MqttButton } from '@components/MqttButton'
 
 // NOt sure
 const Dashboard = () => {
-  const topic = 'projects/adsf1234dfgr1234'; 
+  const topic = 'projects/adsf1234dfgr1234'
 
-  const handleIncomingMessage = (data) => {
+  const handleIncomingMessage = data => {
     // Calculate the total sum of currentOutput from the data array
-    const totalOutput = data.reduce((acc, obj) => acc + obj.currentOutput, 0);
-  
-    console.log('Total Output:', totalOutput);
-  };
+    const totalOutput = data.reduce((acc, obj) => acc + obj.currentOutput, 0)
 
-    return (
-      <>
-        <h1>Dashboard!</h1>
-        <MqttButton
-          topic={topic}
-          onMessageCallback={handleIncomingMessage}
-        />
-      </>
-    )
+    console.log('Total Output:', totalOutput)
   }
-  
-  export default Dashboard
-  
+
+  return (
+    <>
+      <h1>Dashboard!</h1>
+      <MqttButton topic={topic} onMessageCallback={handleIncomingMessage} />
+    </>
+  )
+}
+
+export default Dashboard

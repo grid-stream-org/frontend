@@ -38,8 +38,22 @@ export default [
       },
     },
     settings: {
-      react: {
+      'react': {
         version: '18.3',
+      },
+      'import/resolver': {
+        alias: {
+          map: [
+            ['@components', './src/components'],
+            ['@views', './src/views'],
+            ['@assets', './src/assets'],
+            ['@state', './src/state'],
+            ['@hooks', './src/hooks'],
+            ['@config', './src/hooks'],
+            ['@services', './src/services'],
+          ],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
       },
     },
     plugins: {
