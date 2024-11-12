@@ -4,7 +4,6 @@ import { AppLayout } from '@components/AppLayout'
 import { ProtectedRoutes } from '@components/ProtectedRoutes'
 import { AuthProvider } from '@state/AuthProvider/AuthProvider'
 import { Dashboard } from '@views/Dashboard'
-import { Homepage } from '@views/Homepage'
 import { Login } from '@views/Login'
 
 const App = () => {
@@ -18,8 +17,7 @@ const App = () => {
           {/* Protected Routes */}
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<AppLayout />}>
-              <Route index element={<Homepage />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
             </Route>
           </Route>
         </Routes>
