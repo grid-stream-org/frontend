@@ -1,0 +1,50 @@
+.linechart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.center-content {
+  text-align: center;
+}
+
+.spinning-faster {
+  width: 80px;
+  display: block;
+  margin: 0 auto;
+  animation: spin 2s linear infinite;
+}
+
+.spinning-logo {
+  width: 80px;
+  display: block;
+  margin: 0 auto;
+  animation: spin 5s linear infinite;
+}
+
+.status-message {
+  font-size: 18px;
+  color: #555;
+  margin-top: 15px;
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

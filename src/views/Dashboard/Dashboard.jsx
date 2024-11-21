@@ -1,28 +1,31 @@
-import MqttButton from '../../components/MqttButton/MqttButton';
-import React, { useState } from 'react';
+import { useState } from 'react'
 
+import LineChart from '../../components/LineChart/LineChart'
+import MqttButton from '../../components/MqttButton/MqttButton'
 
-// NOt sure
 const Dashboard = () => {
-  const topic = 'projects/adsf1234dfgr1234'; 
+  const topic = 'projects/adsf1234dfgr1234'
+  const [dataPoints, setDataPoints] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  const handleIncomingMessage = (data) => {
-    // Calculate the total sum of currentOutput from the data array
-    const totalOutput = data.reduce((acc, obj) => acc + obj.currentOutput, 0);
-  
-    console.log('Total Output:', totalOutput);
-  };
+  const handleIncomingMessage = data => {
+    // calculate DER output energy
+    setLoading(false)
+    const totalOutput = Array.isArray(data)
+      ? data.reduce((acc, obj) => acc + obj.currentOutput, 0)
+      : data.currentOutput
 
-    return (
-      <>
-        <h1>Dashboard!</h1>
-        <MqttButton
-          topic={topic}
-          onMessageCallback={handleIncomingMessage}
-        />
-      </>
-    )
+    setDataPoints(prevData => [...prevData, [new Date(), totalOutput]])
+
+    console.log('Total Output:', totalOutput)
   }
-  
-  export default Dashboard
-  
+
+  return (
+    <>
+      <LineChart dataPoints={dataPoints} loading={loading} />
+      <MqttButton topic={topic} onMessageCallback={handleIncomingMessage} setLoading={setLoading} />
+    </>
+  )
+}
+
+export default Dashboard
