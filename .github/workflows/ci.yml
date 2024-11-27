@@ -25,7 +25,7 @@ jobs:
         run: yarn install
 
       - name: Lint client code
-        run: cd client && yarn lint 
+        run: yarn lint 
         
   test_client:
     needs: lint_client
@@ -44,7 +44,7 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        run: cd client && yarn test
+        run: yarn test
         
   build_client:
     needs: test_client
@@ -64,4 +64,4 @@ jobs:
         run: yarn install
 
       - name: Build Client
-        run: cd client && yarn build
+        run: yarn build
